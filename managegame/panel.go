@@ -47,6 +47,7 @@ func Panel(dataConfig *configuration.Structure_configuration, dataGame *configur
 		var stringEnableDifficulty string
 		var stringAddWordAfterGame string
 		var selectMod string
+		var stringEnableJokers string
 
 		// Determine the current state of the victory counter, difficulty, and add word after game
 		if dataConfig.VictoryCounter {
@@ -67,6 +68,12 @@ func Panel(dataConfig *configuration.Structure_configuration, dataGame *configur
 			stringAddWordAfterGame = dataTranslation.Disable
 		}
 
+		if dataConfig.EnableJokers {
+			stringEnableJokers = dataTranslation.Enable
+		} else {
+			stringEnableJokers = dataTranslation.Disable
+		}
+
 		// Display the current configuration and available options
 		fmt.Println(dataTranslation.ConfigurationCurrent)
 		fmt.Println(dataTranslation.EnterNumber)
@@ -74,6 +81,7 @@ func Panel(dataConfig *configuration.Structure_configuration, dataGame *configur
 		fmt.Println(dataTranslation.OptionVictoryCounter + stringVictoryCounter)
 		fmt.Println(dataTranslation.OptionEnableDifficulty + stringEnableDifficulty)
 		fmt.Println(dataTranslation.OptionAddWordAfterGame + stringAddWordAfterGame)
+		fmt.Println(dataTranslation.OptionEnableJokers + stringEnableJokers)
 		fmt.Println(dataTranslation.OptionStartGame)
 		fmt.Println(dataTranslation.LeaveTheGame)
 		fmt.Scanln(&selectMod)
@@ -167,11 +175,32 @@ func Panel(dataConfig *configuration.Structure_configuration, dataGame *configur
 
 		} else if selectMod == "5" {
 			ClearScreen()
+			// Enable/disable adding a word after the game
+			for {
+				var selectEnableJokers string
+				fmt.Println(dataTranslation.EnableJokers + "(" + dataTranslation.SelectModYes + "/" + dataTranslation.SelectModNo + ") :")
+				fmt.Scanln(&selectEnableJokers)
+				selectEnableJokers = strings.ToLower(selectEnableJokers)
+
+				if selectEnableJokers == dataTranslation.SelectModYes {
+					dataConfig.EnableJokers = true
+					break
+				} else if selectEnableJokers == dataTranslation.SelectModNo {
+					dataConfig.EnableJokers = false
+					break
+				} else {
+					ClearScreen()
+					manageerror.PrintError(dataError, dataTranslation.TittleError, dataTranslation.RespectFormulation)
+				}
+			}
+
+		} else if selectMod == "6" {
+			ClearScreen()
 			// Creation of the environment
 			managefiles.CaseManagementFiles(dataFiles, dataConfig, dataGame, dataError, dataTranslation)
 			// Start the game after configuration
 			StartGame(dataConfig, dataGame, dataError, dataTranslation, dataFiles)
-		} else if selectMod == "6" {
+		} else if selectMod == "7" {
 			// Leave the game
 			ClearScreen()
 			break

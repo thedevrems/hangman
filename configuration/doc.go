@@ -50,6 +50,8 @@ type Structure_game struct {
 	Frensh                    string
 	YesRetry                  string
 	NoRetry                   string
+	ErrorJokers               string
+	NumberModJokers           rune
 }
 
 // Corresponds to struct Structure_files structure
@@ -96,6 +98,7 @@ type Structure_configuration struct {
 	VictoryCounter   bool
 	EnableDifficulty bool
 	AddWordAfterGame bool
+	EnableJokers     bool
 }
 
 // Corresponds to struct Structure_translation structure
@@ -160,4 +163,10 @@ type Structure_translation struct {
 	EnableDifficulty           string
 	PleaseEnterLanguage        string
 	LeaveTheGame               string
+	OptionEnableJokers         string
+	EnableJokers               string
+	InsertJokerMessage         string
+	JokersCountMessage         string
+	JokerLimitMessage          string
+	JokerUsedMessage           string
 }

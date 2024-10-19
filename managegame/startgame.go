@@ -20,7 +20,7 @@ import (
 // 1. First clear the screen
 // 2. The number of Wins and the number of Losses from the start is 0 but not registered (only if the option was chosen)
 // 3. Takes into account the difficulty level returned by the player (if the option is enabled) otherwise the difficulty level will be by default
-// 4. The number of Wins is taken into account thanks to the generic playgame function that checks whether a win or loss has occurred 
+// 4. The number of Wins is taken into account thanks to the generic playgame function that checks whether a win or loss has occurred
 // otherwise errors are returned by the different arguments of the function itself.
 // 5. If you want to start again (thanks to the chosen extension) the screen is empty and a new game starts otherwise we stop.
 func StartGame(dataConfig *configuration.Structure_configuration, dataGame *configuration.Structure_game, dataError *configuration.Structure_error, dataTranslation *configuration.Structure_translation, dataFiles *configuration.Structure_files) {
@@ -28,6 +28,7 @@ func StartGame(dataConfig *configuration.Structure_configuration, dataGame *conf
 
 	var nbrVictory, nbrLoose int
 	var selectDifficulty string
+	var nbrJokers int
 
 	if dataConfig.VictoryCounter {
 		nbrVictory = 0
@@ -72,7 +73,11 @@ func StartGame(dataConfig *configuration.Structure_configuration, dataGame *conf
 		selectDifficulty = dataTranslation.Normal
 	}
 
-	message, isVictory := PlayHangman(dataError, dataTranslation, dataFiles, dataConfig, dataGame, 0, 0, selectDifficulty)
+	if dataConfig.EnableJokers {
+		nbrJokers = 0
+	}
+
+	message, isVictory, nbrJokers := PlayHangman(dataError, dataTranslation, dataFiles, dataConfig, dataGame, 0, 0, selectDifficulty, nbrJokers)
 
 	if message == dataError.ErrSelectWord {
 		manageerror.PrintError(dataError, dataTranslation.TittleError, dataTranslation.ErrSelectWordDescription)
@@ -87,6 +92,12 @@ func StartGame(dataConfig *configuration.Structure_configuration, dataGame *conf
 			nbrVictory++
 		} else {
 			nbrLoose++
+		}
+	}
+
+	if dataConfig.EnableJokers {
+		if isVictory && (selectDifficulty != dataTranslation.VeryEasy) {
+			nbrJokers++
 		}
 	}
 
@@ -169,12 +180,18 @@ func StartGame(dataConfig *configuration.Structure_configuration, dataGame *conf
 				}
 			}
 
-			message, isVictory = PlayHangman(dataError, dataTranslation, dataFiles, dataConfig, dataGame, nbrVictory, nbrLoose, selectDifficulty)
+			message, isVictory, nbrJokers = PlayHangman(dataError, dataTranslation, dataFiles, dataConfig, dataGame, nbrVictory, nbrLoose, selectDifficulty, nbrJokers)
 			if dataConfig.VictoryCounter {
 				if isVictory {
 					nbrVictory++
 				} else {
 					nbrLoose++
+				}
+			}
+
+			if dataConfig.EnableJokers {
+				if isVictory && (selectDifficulty != dataTranslation.VeryEasy) {
+					nbrJokers++
 				}
 			}
 

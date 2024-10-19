@@ -16,5 +16,6 @@ func DefaultConfiguration() *Structure_configuration {
 		VictoryCounter:   false,
 		EnableDifficulty: false,
 		AddWordAfterGame: false,
+		EnableJokers:     true,
 	}
 }

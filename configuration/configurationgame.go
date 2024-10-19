@@ -40,6 +40,7 @@ func ConfigGame() *Structure_game {
 		Frensh:                    "fr",
 		YesRetry:                  "yesRetry",
 		NoRetry:                   "NoRetry",
-		
+		ErrorJokers:               "error",
+		NumberModJokers:           '1',
 	}
 }

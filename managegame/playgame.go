@@ -24,8 +24,8 @@ import (
 // Return :
 // The generic function first returns a win or lose message with a string type
 // and also returns whether it is a win or not in boolean form
-func PlayHangman(dataError *configuration.Structure_error, dataTranslation *configuration.Structure_translation, dataFiles *configuration.Structure_files, dataConfig *configuration.Structure_configuration, dataGame *configuration.Structure_game, nbrVictory int, nbrLoose int, nameDifficulty string) (message string, isVictory bool) {
-	var actuelWord string = ""
+func PlayHangman(dataError *configuration.Structure_error, dataTranslation *configuration.Structure_translation, dataFiles *configuration.Structure_files, dataConfig *configuration.Structure_configuration, dataGame *configuration.Structure_game, nbrVictory int, nbrLoose int, nameDifficulty string, nbrJokers int) (message string, isVictory bool, newNbrJokers int) {
+	var actualWord string = ""
 	var stageHangman int = 1
 	var tryAgain string = ""
 	var selectedLetter string = ""
@@ -34,14 +34,17 @@ func PlayHangman(dataError *configuration.Structure_error, dataTranslation *conf
 	var printSelected string
 	var youWin bool = false
 	var revealWord bool = false
+	var stringNbrJokers string
 	var wordsToGuess string = ChooseWord(dataError, dataTranslation, dataFiles, dataConfig, dataGame, nameDifficulty)
 
 	if wordsToGuess == dataError.ErrSelectMode || wordsToGuess == dataError.ErrSelectWord {
-		return wordsToGuess, false
+		ClearScreen()
+		return wordsToGuess, false, nbrJokers
 	}
 
 	// Indicates the number of Winnings and the number of Losses (if the extension was chosen by the player) but only if at least one game has been completed.
 	fmt.Println(dataTranslation.TitleHangman)
+	fmt.Println("")
 	if nbrLoose != 0 || nbrVictory != 0 {
 		fmt.Println(dataTranslation.YourCurrentlyOn + strconv.Itoa(nbrVictory) + dataTranslation.Victory + dataTranslation.And + strconv.Itoa(nbrLoose) + dataTranslation.Defeat)
 	}
@@ -94,9 +97,11 @@ func PlayHangman(dataError *configuration.Structure_error, dataTranslation *conf
 				fmt.Scanln(&tryAgain)
 				tryAgain = strings.ToLower(tryAgain)
 				if tryAgain == dataTranslation.PlayAgainYes {
-					return dataGame.YesRetry, false
+					ClearScreen()
+					return dataGame.YesRetry, false, nbrJokers
 				} else if tryAgain == dataTranslation.PlayAgainNo {
-					return dataGame.NoRetry, false
+					ClearScreen()
+					return dataGame.NoRetry, false, nbrJokers
 				} else {
 					ClearScreen()
 					manageerror.PrintError(dataError, dataTranslation.TittleError, dataTranslation.RespectFormulation)
@@ -108,11 +113,23 @@ func PlayHangman(dataError *configuration.Structure_error, dataTranslation *conf
 		// The formula is (lettersToReveal := wordLen/2 - 1)
 		// If ever with the formula the count goes back to 0, there will be no revealed letter
 		if stageHangman == 1 && !revealWord {
-			actuelWord = RevealRandomLettersOfWord(dataTranslation, wordsToGuess, nameDifficulty)
+			actualWord = RevealRandomLettersOfWord(dataTranslation, wordsToGuess, nameDifficulty)
 			revealWord = true
-			fmt.Println(actuelWord)
+			fmt.Println(actualWord)
+			fmt.Println("")
 		} else {
-			fmt.Println(actuelWord)
+			fmt.Println(actualWord)
+			fmt.Println("")
+		}
+
+		if dataConfig.EnableJokers {
+			if nbrJokers != 0 {
+				fmt.Println(dataTranslation.InsertJokerMessage)
+				fmt.Println("")
+			}
+			stringNbrJokers = strconv.Itoa(nbrJokers)
+			fmt.Println(dataTranslation.JokersCountMessage + stringNbrJokers)
+			fmt.Println("")
 		}
 
 		// User input request
@@ -131,16 +148,37 @@ func PlayHangman(dataError *configuration.Structure_error, dataTranslation *conf
 			}
 
 		} else if len(runeLetter) == 1 {
-			// Checks whether the chosen character is a letter or not using the 'IsLetter' function
-			// otherwise an error message will be displayed
+			// Check if the chosen character is a letter. Use the 'IsLetter' function to perform the check.
+			// If it's not a letter, an error message will be displayed.
+			// If the input is the special character for a wildcard and wildcards are enabled and available, the wildcard is used.
+			// If the wildcard is used correctly, a random letter is revealed and the number of wildcards is decremented.
+			// Otherwise, an error message will be displayed indicating the input is not a valid letter.
+			// If the difficulty is "Hacker", the number of attempts (stageHangman) increases after an error.
 			if !IsLetter(runeLetter[0]) {
 				ClearScreen()
 
-				manageerror.PrintError(dataError, dataTranslation.TittleError, dataTranslation.NotALetterError)
+				if runeLetter[0] == dataGame.NumberModJokers && dataConfig.EnableJokers && nbrJokers > 0 {
+					tempActualWord, charJoker := EnableJokers(dataGame, actualWord, wordsToGuess, tabSelectedLetter)
 
-				if nameDifficulty == dataTranslation.Hacker {
-					stageHangman++
+					if tempActualWord == dataGame.ErrorJokers {
+						manageerror.PrintError(dataError, dataTranslation.TittleError, dataTranslation.JokerLimitMessage)
+					} else {
+						nbrJokers--
+						actualWord = tempActualWord
+						tabSelectedLetter = append(tabSelectedLetter, charJoker)
+
+						fmt.Println(dataTranslation.JokerUsedMessage + charJoker)
+						fmt.Println("")
+					}
+
+				} else {
+					manageerror.PrintError(dataError, dataTranslation.TittleError, dataTranslation.NotALetterError)
+
+					if nameDifficulty == dataTranslation.Hacker {
+						stageHangman++
+					}
 				}
+
 			} else if AlreadySelected(tabSelectedLetter, GetLetterConversion(runeLetter[0])) {
 				ClearScreen()
 
@@ -159,8 +197,8 @@ func PlayHangman(dataError *configuration.Structure_error, dataTranslation *conf
 				tabSelectedLetter = append(tabSelectedLetter, letterConversion)
 
 				if TestLetterInWord(wordsToGuess, letterConversion) {
-					actuelWord = RevealWord(wordsToGuess, actuelWord, letterConversion)
-					if actuelWord == wordsToGuess {
+					actualWord = RevealWord(wordsToGuess, actualWord, letterConversion)
+					if actualWord == wordsToGuess {
 						youWin = true
 					}
 				} else {
@@ -180,6 +218,7 @@ func PlayHangman(dataError *configuration.Structure_error, dataTranslation *conf
 				if nameDifficulty == dataTranslation.Hacker {
 					stageHangman++
 				}
+
 			} else {
 				tabSelectedWord = append(tabSelectedWord, selectedLetter)
 				if selectedLetter == wordsToGuess {
@@ -209,9 +248,11 @@ func PlayHangman(dataError *configuration.Structure_error, dataTranslation *conf
 				fmt.Scanln(&tryAgain)
 				tryAgain = strings.ToLower(tryAgain)
 				if tryAgain == dataTranslation.PlayAgainYes {
-					return dataGame.YesRetry, true
+					ClearScreen()
+					return dataGame.YesRetry, true, nbrJokers
 				} else if tryAgain == dataTranslation.PlayAgainNo {
-					return dataGame.NoRetry, true
+					ClearScreen()
+					return dataGame.NoRetry, true, nbrJokers
 				} else {
 					ClearScreen()
 					manageerror.PrintError(dataError, dataTranslation.TittleError, dataTranslation.RespectFormulation)
