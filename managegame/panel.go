@@ -2,10 +2,13 @@ package managegame
 
 import (
 	"fmt"
-	"hangman/configuration"
-	"hangman/manageerror"
-	"hangman/managefiles"
 	"strings"
+
+	"github.com/thedevrems/hangman/manageerror"
+
+	"github.com/thedevrems/hangman/managefiles"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 // Panel manages the game's configuration panel, allowing the user to modify

@@ -1,8 +1,9 @@
 package managegame
 
 import (
-	"hangman/configuration"
 	"math/rand"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 // ChooseWord selects a random word, converts it, and checks if it's valid.

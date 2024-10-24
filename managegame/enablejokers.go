@@ -1,9 +1,10 @@
 package managegame
 
 import (
-	"hangman/configuration"
 	"math/rand"
 	"strings"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 func EnableJokers(dataGame *configuration.Structure_game, actualWord string, goodWord string, tabSelectedLetter []string) (word string, char string) {

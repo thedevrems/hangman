@@ -1,8 +1,9 @@
 package managegame
 
 import (
-	"hangman/configuration"
 	"math/rand"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 // RevealRandomLettersOfWord is used to reveal random letters of the word chosen also randomly

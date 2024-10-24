@@ -2,7 +2,8 @@ package manageerror
 
 import (
 	"fmt"
-	"hangman/configuration"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 // PrintError allows to display an error based on it

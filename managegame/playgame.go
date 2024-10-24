@@ -2,10 +2,12 @@ package managegame
 
 import (
 	"fmt"
-	"hangman/configuration"
-	"hangman/manageerror"
 	"strconv"
 	"strings"
+
+	"github.com/thedevrems/hangman/manageerror"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 // PlayHangman starts the hangman game with support for other functions

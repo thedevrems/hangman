@@ -2,10 +2,12 @@ package managefiles
 
 import (
 	"fmt"
-	"hangman/configuration"
-	"hangman/manageerror"
 	"os"
 	"path/filepath"
+
+	"github.com/thedevrems/hangman/manageerror"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 func AppendWordToFile(dataError *configuration.Structure_error, dataTranslation *configuration.Structure_translation, dataFiles *configuration.Structure_files, fileName string, word string) {

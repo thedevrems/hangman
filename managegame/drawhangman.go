@@ -3,11 +3,13 @@ package managegame
 import (
 	"bufio"
 	"fmt"
-	"hangman/configuration"
-	"hangman/manageerror"
 	"os"
 	"path/filepath"
 	"strings"
+
+	"github.com/thedevrems/hangman/manageerror"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 // DrawHangman draws the hanged man along the player's chess game.

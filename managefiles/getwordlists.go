@@ -1,6 +1,6 @@
 package managefiles
 
-import "hangman/configuration"
+import "github.com/thedevrems/hangman/configuration"
 
 // getWordLists returns the appropriate word list based on the file name and language
 func getWordLists(dataFiles *configuration.Structure_files, nameFiles string, englishDetected bool) []string {

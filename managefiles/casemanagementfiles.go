@@ -1,6 +1,6 @@
 package managefiles
 
-import "hangman/configuration"
+import "github.com/thedevrems/hangman/configuration"
 
 // CaseManagementFiles manages the creation of necessary files for the application.
 func CaseManagementFiles(dataFiles *configuration.Structure_files, dataConfiguration *configuration.Structure_configuration, dataGame *configuration.Structure_game, dataError *configuration.Structure_error, dataTranslation *configuration.Structure_translation) {

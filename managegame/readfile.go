@@ -2,10 +2,12 @@ package managegame
 
 import (
 	"bufio"
-	"hangman/configuration"
-	"hangman/manageerror"
 	"os"
 	"path/filepath"
+
+	"github.com/thedevrems/hangman/manageerror"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 // ReadFile to read the correct file requested by the player regarding the difficulty level

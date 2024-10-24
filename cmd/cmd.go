@@ -1,8 +1,9 @@
 package main
 
 import (
-	"hangman/configuration"
-	"hangman/managegame"
+	"github.com/thedevrems/hangman/configuration"
+
+	"github.com/thedevrems/hangman/managegame"
 )
 
 func main() {

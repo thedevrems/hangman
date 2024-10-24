@@ -1,10 +1,12 @@
 package managefiles
 
 import (
-	"hangman/configuration"
-	"hangman/manageerror"
 	"os"
 	"path/filepath"
+
+	"github.com/thedevrems/hangman/manageerror"
+
+	"github.com/thedevrems/hangman/configuration"
 )
 
 // WriteFile handles the creation of a single file required by the application.
