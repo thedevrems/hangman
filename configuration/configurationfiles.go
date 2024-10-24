@@ -24,7 +24,7 @@ func ConfigFiles() *Structure_files {
 		NameFilesConfigEnglishWordsHacker:   "englishwordshacker.txt",
 
 		NameFilesDisplayResult: "hangman.txt",
-		Path:                   "./managefiles/files/",
+		Path:                   "./files/",
 
 		FrenchWordsVeryEasy: []string{
 			"chat", "chien", "maison", "pomme", "soleil", "lune", "fleur", "arbre", "jardin", "voiture",
