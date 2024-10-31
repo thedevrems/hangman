@@ -17,7 +17,7 @@ import (
 // Args:
 // - Takes pointers to various configuration structures (dataFiles, dataGame, etc.)
 // - Takes the position 'pos' (an integer) to indicate the part of the hangman to draw.
-func DrawHangman(dataFiles *configuration.Structure_files, dataGame *configuration.Structure_game, dataTranslation *configuration.Structure_translation, dataError *configuration.Structure_error, pos int) {
+func DrawHangman(dataFiles *configuration.Structure_files, dataGame *configuration.Structure_game, dataTranslation *configuration.TranslationHangman, dataError *configuration.Structure_error, pos int) {
 	// Array to hold start and stop positions for each drawing
 	drawPositions := [][2]int{
 		{dataGame.DrawHangmanLineStartPos1, dataGame.DrawHangmanLineStopPos1},

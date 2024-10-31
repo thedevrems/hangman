@@ -101,8 +101,8 @@ type Structure_configuration struct {
 	EnableJokers     bool
 }
 
-// Corresponds to struct Structure_translation structure
-type Structure_translation struct {
+// Corresponds to struct TranslationHangman structure
+type TranslationHangman struct {
 	UnsupportedFileNameError   string
 	DirectoryCreationError     string
 	FileCreationError          string

@@ -15,7 +15,7 @@ import (
 //
 // Return :
 // The function will return the revealed strings
-func RevealRandomLettersOfWord(dataTranslation *configuration.Structure_translation, word string, nameDifficulty string) string {
+func RevealRandomLettersOfWord(dataTranslation *configuration.TranslationHangman, word string, nameDifficulty string) string {
 	wordLen := len(word)
 
 	if nameDifficulty == dataTranslation.Hacker {

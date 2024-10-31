@@ -13,7 +13,7 @@ func main() {
 	dataGame := configuration.ConfigGame()
 	dataError := configuration.ConfigError()
 	// Selection of language
-	var dataTranslation *configuration.Structure_translation
+	var dataTranslation *configuration.TranslationHangman
 	if dataConfig.Language == dataGame.English {
 		dataTranslation = configuration.DataTranslationEn()
 	} else {
