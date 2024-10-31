@@ -15,9 +15,9 @@ func main() {
 	// Selection of language
 	var dataTranslation *configuration.TranslationHangman
 	if dataConfig.Language == dataGame.English {
-		dataTranslation = configuration.DataTranslationEn()
+		dataTranslation = configuration.DataTranslationHangmanEn()
 	} else {
-		dataTranslation = configuration.DataTranslationFr()
+		dataTranslation = configuration.DataTranslationHangmanFr()
 	}
 
 	// Start Game

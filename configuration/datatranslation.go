@@ -4,7 +4,7 @@ package configuration
 
 // Return
 // The English translations of all terms used that indicate a message during the game
-func DataTranslationEn() *TranslationHangman {
+func DataTranslationHangmanEn() *TranslationHangman {
 	return &TranslationHangman{
 		UnsupportedFileNameError:   "Unsupported file name ",
 		DirectoryCreationError:     "Failed to create directory  ",
@@ -79,7 +79,7 @@ func DataTranslationEn() *TranslationHangman {
 
 // Return
 // The French translations of all terms used that indicate a message during the game
-func DataTranslationFr() *TranslationHangman {
+func DataTranslationHangmanFr() *TranslationHangman {
 	return &TranslationHangman{
 		UnsupportedFileNameError:   "Nom de fichier non pris en charge  ",
 		DirectoryCreationError:     "Impossible de créer le répertoire  ",

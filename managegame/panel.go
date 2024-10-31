@@ -101,11 +101,11 @@ func Panel(dataConfig *configuration.Structure_configuration, dataGame *configur
 
 				if selectLang == dataGame.English {
 					dataConfig.Language = dataGame.English
-					dataTranslation = configuration.DataTranslationEn()
+					dataTranslation = configuration.DataTranslationHangmanEn()
 					break
 				} else if selectLang == dataGame.Frensh {
 					dataConfig.Language = dataGame.Frensh
-					dataTranslation = configuration.DataTranslationFr()
+					dataTranslation = configuration.DataTranslationHangmanFr()
 					break
 				} else {
 					ClearScreen()
