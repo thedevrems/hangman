@@ -1,7 +1,7 @@
 package configuration
 
-// Corresponds to struct Structure_error structure
-type Structure_error struct {
+// Corresponds to struct DataError structure
+type DataError struct {
 	Reset         string
 	Red           string
 	Green         string
@@ -14,8 +14,8 @@ type Structure_error struct {
 	ErrSelectWord string
 }
 
-// Corresponds to struct Structure_game structure which returns the position of the line in the Hangman.txt file
-type Structure_game struct {
+// Corresponds to struct GameHangman structure which returns the position of the line in the Hangman.txt file
+type DataGameHangman struct {
 	DrawHangmanLineStartPos1  int
 	DrawHangmanLineStopPos1   int
 	DrawHangmanLineStartPos2  int
@@ -54,8 +54,8 @@ type Structure_game struct {
 	NumberModJokers           rune
 }
 
-// Corresponds to struct Structure_files structure
-type Structure_files struct {
+// Corresponds to struct DataFiles structure
+type DataFiles struct {
 	NameFilesConfigFrenchWordsDefault  string
 	NameFilesConfigFrenchWordsVeryEasy string
 	NameFilesConfigFrenchWordsEasy     string
@@ -92,8 +92,8 @@ type Structure_files struct {
 	ContentDisplayResult string
 }
 
-// Corresponds to struct Structure_configuration structure
-type Structure_configuration struct {
+// Corresponds to struct DataConfiguration structure
+type DataConfigHangman struct {
 	Language         string
 	VictoryCounter   bool
 	EnableDifficulty bool

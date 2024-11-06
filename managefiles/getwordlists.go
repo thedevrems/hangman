@@ -3,7 +3,7 @@ package managefiles
 import "github.com/thedevrems/hangman/configuration"
 
 // getWordLists returns the appropriate word list based on the file name and language
-func getWordLists(dataFiles *configuration.Structure_files, nameFiles string, englishDetected bool) []string {
+func getWordLists(dataFiles *configuration.DataFiles, nameFiles string, englishDetected bool) []string {
 	if englishDetected {
 		switch nameFiles {
 		case dataFiles.NameFilesConfigEnglishWordsDefault:

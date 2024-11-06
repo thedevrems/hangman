@@ -3,7 +3,7 @@ package managefiles
 import "github.com/thedevrems/hangman/configuration"
 
 // CaseManagementFiles manages the creation of necessary files for the application.
-func CaseManagementFiles(dataFiles *configuration.Structure_files, dataConfiguration *configuration.Structure_configuration, dataGame *configuration.Structure_game, dataError *configuration.Structure_error, dataTranslation *configuration.TranslationHangman) {
+func CaseManagementFiles(dataFiles *configuration.DataFiles, dataConfiguration *configuration.DataConfigHangman, dataGame *configuration.DataGameHangman, dataError *configuration.DataError, dataTranslation *configuration.TranslationHangman) {
 	var englishDetected bool = dataConfiguration.Language == dataGame.English
 	var fileNames []string
 

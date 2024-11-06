@@ -7,7 +7,7 @@ import (
 )
 
 // ChooseWord selects a random word, converts it, and checks if it's valid.
-func ChooseWord(dataError *configuration.Structure_error, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.Structure_files, dataConfig *configuration.Structure_configuration, dataGame *configuration.Structure_game, nameDifficulty string) (word string) {
+func ChooseWord(dataError *configuration.DataError, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.DataFiles, dataConfig *configuration.DataConfigHangman, dataGame *configuration.DataGameHangman, nameDifficulty string) (word string) {
 	var errSelectMode = dataError.ErrSelectMode
 	var errSelectWord = dataError.ErrSelectWord
 

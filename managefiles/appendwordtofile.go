@@ -10,7 +10,7 @@ import (
 	"github.com/thedevrems/hangman/configuration"
 )
 
-func AppendWordToFile(dataError *configuration.Structure_error, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.Structure_files, fileName string, word string) {
+func AppendWordToFile(dataError *configuration.DataError, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.DataFiles, fileName string, word string) {
 
 	filePath := filepath.Join(dataFiles.Path, fileName)
 	fmt.Println(fileName, word)

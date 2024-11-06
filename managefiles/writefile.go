@@ -10,7 +10,7 @@ import (
 )
 
 // WriteFile handles the creation of a single file required by the application.
-func WriteFile(dataFiles *configuration.Structure_files, dataError *configuration.Structure_error, dataTranslation *configuration.TranslationHangman, path string, nameFiles string, englishDetected bool) {
+func WriteFile(dataFiles *configuration.DataFiles, dataError *configuration.DataError, dataTranslation *configuration.TranslationHangman, path string, nameFiles string, englishDetected bool) {
 	filePath := filepath.Join(path, nameFiles)
 
 	// Create the directory if it doesn't exist

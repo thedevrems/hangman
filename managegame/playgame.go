@@ -26,7 +26,7 @@ import (
 // Return :
 // The generic function first returns a win or lose message with a string type
 // and also returns whether it is a win or not in boolean form
-func PlayHangman(dataError *configuration.Structure_error, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.Structure_files, dataConfig *configuration.Structure_configuration, dataGame *configuration.Structure_game, nbrVictory int, nbrLoose int, nameDifficulty string, nbrJokers int) (message string, isVictory bool, newNbrJokers int) {
+func PlayHangman(dataError *configuration.DataError, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.DataFiles, dataConfig *configuration.DataConfigHangman, dataGame *configuration.DataGameHangman, nbrVictory int, nbrLoose int, nameDifficulty string, nbrJokers int) (message string, isVictory bool, newNbrJokers int) {
 	var actualWord string = ""
 	var stageHangman int = 1
 	var tryAgain string = ""

@@ -23,7 +23,7 @@ import (
 //
 // Return :
 // The function will return a word array corresponding to all of the words in the file
-func ReadFile(dataError *configuration.Structure_error, dataTranslation *configuration.TranslationHangman, path string, nameFile string) []string {
+func ReadFile(dataError *configuration.DataError, dataTranslation *configuration.TranslationHangman, path string, nameFile string) []string {
 	filePath := filepath.Join(path, nameFile)
 
 	file, err := os.Open(filePath)

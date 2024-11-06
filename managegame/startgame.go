@@ -26,7 +26,7 @@ import (
 // 4. The number of Wins is taken into account thanks to the generic playgame function that checks whether a win or loss has occurred
 // otherwise errors are returned by the different arguments of the function itself.
 // 5. If you want to start again (thanks to the chosen extension) the screen is empty and a new game starts otherwise we stop.
-func StartGame(dataConfig *configuration.Structure_configuration, dataGame *configuration.Structure_game, dataError *configuration.Structure_error, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.Structure_files) {
+func StartGame(dataConfig *configuration.DataConfigHangman, dataGame *configuration.DataGameHangman, dataError *configuration.DataError, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.DataFiles) {
 	ClearScreen()
 
 	var nbrVictory, nbrLoose int

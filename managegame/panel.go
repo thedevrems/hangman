@@ -43,7 +43,7 @@ import (
 //  4. Allow or disallow adding a new word after each game.
 //  5. Start the game with the current configuration.
 //  6. Leave the game
-func Panel(dataConfig *configuration.Structure_configuration, dataGame *configuration.Structure_game, dataError *configuration.Structure_error, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.Structure_files) {
+func Panel(dataConfig *configuration.DataConfigHangman, dataGame *configuration.DataGameHangman, dataError *configuration.DataError, dataTranslation *configuration.TranslationHangman, dataFiles *configuration.DataFiles) {
 	for {
 		ClearScreen()
 		var stringVictoryCounter string
