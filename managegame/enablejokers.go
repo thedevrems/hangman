@@ -7,7 +7,7 @@ import (
 	"github.com/thedevrems/hangman/configuration"
 )
 
-func EnableJokers(dataGame *configuration.Structure_game, actualWord string, goodWord string, tabSelectedLetter []string) (word string, char string) {
+func EnableJokers(dataGame *configuration.DataGameHangman, actualWord string, goodWord string, tabSelectedLetter []string) (word string, char string) {
 
 	// Convertir tabSelectedLetter en map pour faciliter les vérifications
 	usedLetters := make(map[string]bool)

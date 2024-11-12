@@ -4,8 +4,8 @@ package configuration
 
 // Return
 // The English translations of all terms used that indicate a message during the game
-func DataTranslationEn() *Structure_translation {
-	return &Structure_translation{
+func DataTranslationHangmanEn() *TranslationHangman {
+	return &TranslationHangman{
 		UnsupportedFileNameError:   "Unsupported file name ",
 		DirectoryCreationError:     "Failed to create directory  ",
 		FileCreationError:          "Failed to create file ",
@@ -79,8 +79,8 @@ func DataTranslationEn() *Structure_translation {
 
 // Return
 // The French translations of all terms used that indicate a message during the game
-func DataTranslationFr() *Structure_translation {
-	return &Structure_translation{
+func DataTranslationHangmanFr() *TranslationHangman {
+	return &TranslationHangman{
 		UnsupportedFileNameError:   "Nom de fichier non pris en charge  ",
 		DirectoryCreationError:     "Impossible de créer le répertoire  ",
 		FileCreationError:          "Impossible de créer le fichier  ",

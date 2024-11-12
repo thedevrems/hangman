@@ -5,8 +5,8 @@ package configuration
 // Return :
 // The .txt file that corresponds to the difficulty chosen by the player if he decided to do it in the language chosen
 
-func ConfigFiles() *Structure_files {
-	return &Structure_files{
+func ConfigFiles() *DataFiles {
+	return &DataFiles{
 		NameFilesConfigFrenchWordsDefault:  "frenchwordsdefault.txt",
 		NameFilesConfigFrenchWordsVeryEasy: "frenchwordsveryeasy.txt",
 		NameFilesConfigFrenchWordsEasy:     "frenchwordseasy.txt",

@@ -9,13 +9,13 @@ package configuration
 // The 'AddWordAfterGame' is also set to false, meaning no word will be added after each game.
 //
 // The player can modify these settings later in the game panel.
-func DefaultConfiguration() *Structure_configuration {
-	return &Structure_configuration{
+func DefaultConfiguration() *DataConfigHangman {
+	return &DataConfigHangman{
 		Language: "en", // "fr" or "en"
 		// Mode
 		VictoryCounter:   false,
 		EnableDifficulty: false,
 		AddWordAfterGame: false,
-		EnableJokers:     true,
+		EnableJokers:     false,
 	}
 }

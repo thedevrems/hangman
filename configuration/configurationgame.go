@@ -4,8 +4,8 @@ package configuration
 
 // Return
 // The drawing in the hangman.txt file corresponding to the number of wrong(s) answer(s) he made
-func ConfigGame() *Structure_game {
-	return &Structure_game{
+func ConfigGame() *DataGameHangman {
+	return &DataGameHangman{
 		DrawHangmanLineStartPos1:  3,
 		DrawHangmanLineStopPos1:   3,
 		DrawHangmanLineStartPos2:  7,

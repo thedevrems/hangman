@@ -5,8 +5,8 @@ package configuration
 // Return :
 // The different colors involved in a possible error during the game phase
 
-func ConfigError() *Structure_error {
-	return &Structure_error{
+func ConfigError() *DataError {
+	return &DataError{
 		Reset:         "\033[0m",
 		Red:           "\033[31m",
 		Green:         "\033[32m",
